@@ -8,6 +8,7 @@ import { RevenueChart } from "@/components/dashboard/revenue-chart";
 import { RecentSales } from "@/components/dashboard/recent-sales";
 import { OrdersTable } from "@/components/dashboard/orders-table";
 import { CreateInvoiceModal } from "@/components/dashboard/create-invoice-modal";
+import { ComponentsShowcase } from "@/components/dashboard/components-showcase";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -86,6 +87,8 @@ export default function DashboardPage() {
           </div>
 
           {/* Conditional View by Selected Tab */}
+          {currentTab === "components" && <ComponentsShowcase />}
+
           {currentTab === "overview" && (
             <div className="space-y-6">
               {/* Stat Cards */}

@@ -14,6 +14,7 @@ import {
   LogOut,
   HelpCircle,
   ShieldCheck,
+  Layers,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -29,6 +30,7 @@ interface SidebarProps {
 
 const navItems = [
   { id: "overview", label: "Overview", icon: LayoutDashboard, badge: null },
+  { id: "components", label: "UI Components", icon: Layers, badge: "21" },
   { id: "analytics", label: "Analytics", icon: BarChart3, badge: "Live" },
   { id: "orders", label: "Orders", icon: CreditCard, badge: "12" },
   { id: "customers", label: "Customers", icon: Users, badge: null },
