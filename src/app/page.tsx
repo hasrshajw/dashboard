@@ -1,204 +1,137 @@
 "use client";
 
 import * as React from "react";
-import { Sidebar } from "@/components/dashboard/sidebar";
-import { Header } from "@/components/dashboard/header";
-import { StatsCards } from "@/components/dashboard/stats-cards";
-import { RevenueChart } from "@/components/dashboard/revenue-chart";
-import { RecentSales } from "@/components/dashboard/recent-sales";
-import { OrdersTable } from "@/components/dashboard/orders-table";
-import { CreateInvoiceModal } from "@/components/dashboard/create-invoice-modal";
-import { ComponentsShowcase } from "@/components/dashboard/components-showcase";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { TopNav } from "@/components/hostinger/top-nav";
+import { ExpirationBanner } from "@/components/hostinger/expiration-banner";
+import { HostingerSidebar } from "@/components/hostinger/sidebar";
+import { PromoCard } from "@/components/hostinger/promo-card";
+import { DomainTable } from "@/components/hostinger/domain-table";
+import { AiOmnibar } from "@/components/hostinger/ai-omnibar";
 import {
-  Download,
-  Calendar,
-  Sparkles,
-  ArrowUpRight,
-  Plus,
-  BarChart3,
-  Users,
-  Settings as SettingsIcon,
-} from "lucide-react";
+  GetDomainModal,
+  TransferDomainModal,
+  RenewDomainModal,
+} from "@/components/hostinger/domain-modals";
+import { ArrowLeftRight, Globe, Sparkles } from "lucide-react";
+import { ComponentsShowcase } from "@/components/dashboard/components-showcase";
 
 export default function DashboardPage() {
-  const [currentTab, setCurrentTab] = React.useState("overview");
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [currentTab, setCurrentTab] = React.useState("domains");
+  const [currentSubTab, setCurrentSubTab] = React.useState("portfolio");
+
+  // Modals state
+  const [isGetDomainOpen, setIsGetDomainOpen] = React.useState(false);
+  const [isTransferOpen, setIsTransferOpen] = React.useState(false);
+  const [renewTarget, setRenewTarget] = React.useState<string | null>(null);
 
   return (
-    <div className="flex min-h-screen bg-background">
-      {/* Sidebar */}
-      <Sidebar
-        currentTab={currentTab}
-        onSelectTab={setCurrentTab}
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-      />
+    <div className="min-h-screen bg-[#fafbff] text-[#1d1e20] flex flex-col font-sans antialiased">
+      {/* 1. Dark Top Navigation Bar */}
+      <TopNav />
 
-      {/* Main Content Area */}
-      <div className="flex flex-1 flex-col overflow-hidden">
-        {/* Header */}
-        <Header
-          onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
-          onOpenNewModal={() => setIsModalOpen(true)}
+      {/* 2. Urgent Expiration Alert Banner */}
+      <ExpirationBanner onRenew={() => setRenewTarget("vastramayamagic.in")} />
+
+      {/* 3. Main Workspace Area: Sidebar + Content */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Left Sidebar */}
+        <HostingerSidebar
+          currentTab={currentTab}
+          onSelectTab={setCurrentTab}
+          currentSubTab={currentSubTab}
+          onSelectSubTab={setCurrentSubTab}
         />
 
-        {/* Dashboard Body */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 space-y-6">
-          {/* Welcome & Top Banner */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                  Dashboard Overview
+        {/* Main Content Body */}
+        <main className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 pb-28">
+          {currentTab === "domains" && (
+            <div className="max-w-6xl mx-auto space-y-6">
+              {/* Header Title & Actions */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <h1 className="text-2xl font-bold tracking-tight text-[#1d1e20]">
+                  Domain portfolio
                 </h1>
-                <Badge variant="outline" className="hidden sm:inline-flex text-xs gap-1">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Live Sync
-                </Badge>
+
+                <div className="flex items-center gap-2.5">
+                  {/* Transfer an existing domain */}
+                  <button
+                    onClick={() => setIsTransferOpen(true)}
+                    className="flex items-center gap-2 rounded-lg border border-[#dadce0] bg-white hover:bg-[#f2f3f6] px-3.5 py-2 text-xs font-semibold text-[#673de6] shadow-2xs transition-colors cursor-pointer"
+                  >
+                    <ArrowLeftRight className="h-3.5 w-3.5 text-[#673de6]" />
+                    <span>Transfer an existing domain</span>
+                  </button>
+
+                  {/* Get a new domain */}
+                  <button
+                    onClick={() => setIsGetDomainOpen(true)}
+                    className="flex items-center gap-2 rounded-lg bg-[#673de6] hover:bg-[#5025d1] px-4 py-2 text-xs font-semibold text-white shadow-xs transition-colors cursor-pointer"
+                  >
+                    <Globe className="h-3.5 w-3.5 text-white" />
+                    <span>Get a new domain</span>
+                  </button>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground mt-0.5">
-                Welcome back, Alex. Here is what is happening with your projects today.
+
+              {/* Promo Card: "Protect your internet identity" weonemedia.in ₹ 1.00 */}
+              <PromoCard
+                onGetNow={() => setIsGetDomainOpen(true)}
+                onSeeMore={() => setIsGetDomainOpen(true)}
+              />
+
+              {/* Domains Table */}
+              <DomainTable
+                onRenewDomain={(domain) => setRenewTarget(domain)}
+                onManageDomain={(domain) =>
+                  alert(`Managing DNS, nameservers, and settings for ${domain}`)
+                }
+              />
+            </div>
+          )}
+
+          {/* Fallback for other tabs */}
+          {currentTab === "open-source" && (
+            <div className="max-w-6xl mx-auto">
+              <ComponentsShowcase />
+            </div>
+          )}
+
+          {currentTab !== "domains" && currentTab !== "open-source" && (
+            <div className="max-w-4xl mx-auto rounded-xl border border-[#dadce0] bg-white p-12 text-center space-y-3">
+              <Sparkles className="mx-auto h-10 w-10 text-[#673de6]" />
+              <h2 className="text-lg font-bold capitalize text-[#1d1e20]">
+                {currentTab} Overview
+              </h2>
+              <p className="text-xs text-[#6d7081] max-w-sm mx-auto">
+                Manage your {currentTab} services, deploy apps, and configure options.
               </p>
-            </div>
-
-            {/* Top Action Buttons */}
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-9 gap-1.5 text-xs"
-                onClick={() => alert("Monthly report exported to CSV!")}
+              <button
+                onClick={() => setCurrentTab("domains")}
+                className="mt-2 text-xs font-semibold text-[#673de6] hover:underline cursor-pointer"
               >
-                <Download className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Export Report</span>
-              </Button>
-              <Button
-                size="sm"
-                className="h-9 gap-1.5 text-xs shadow-sm"
-                onClick={() => setIsModalOpen(true)}
-              >
-                <Plus className="h-3.5 w-3.5" />
-                <span>New Invoice</span>
-              </Button>
-            </div>
-          </div>
-
-          {/* Conditional View by Selected Tab */}
-          {currentTab === "components" && <ComponentsShowcase />}
-
-          {currentTab === "overview" && (
-            <div className="space-y-6">
-              {/* Stat Cards */}
-              <StatsCards />
-
-              {/* Charts & Recent Activity Grid */}
-              <div className="grid gap-6 grid-cols-1 lg:grid-cols-7">
-                <RevenueChart />
-                <RecentSales />
-              </div>
-
-              {/* Transactions / Orders Data Table */}
-              <OrdersTable />
-            </div>
-          )}
-
-          {currentTab === "analytics" && (
-            <div className="space-y-6">
-              <div className="rounded-xl border border-border bg-card p-6 text-center py-12">
-                <BarChart3 className="mx-auto h-12 w-12 text-primary opacity-80 mb-3" />
-                <h2 className="text-lg font-semibold text-foreground">Advanced Analytics Engine</h2>
-                <p className="text-xs text-muted-foreground max-w-md mx-auto mt-1">
-                  Real-time event tracking, conversion funnels, and retention curves configured for your product.
-                </p>
-              </div>
-              <StatsCards />
-              <RevenueChart />
-            </div>
-          )}
-
-          {currentTab === "orders" && (
-            <div className="space-y-6">
-              <OrdersTable />
-            </div>
-          )}
-
-          {currentTab === "customers" && (
-            <div className="space-y-6">
-              <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
-                <RecentSales />
-                <div className="rounded-xl border border-border bg-card p-6 flex flex-col justify-center items-center text-center">
-                  <Users className="h-10 w-10 text-primary mb-2" />
-                  <h3 className="font-semibold text-foreground">Audience Segmentation</h3>
-                  <p className="text-xs text-muted-foreground mt-1 max-w-xs">
-                    Target power users, churn risks, and trial signups with automated email flows.
-                  </p>
-                  <Button size="sm" variant="outline" className="mt-4 text-xs">
-                    Configure Cohorts
-                  </Button>
-                </div>
-              </div>
-              <OrdersTable />
-            </div>
-          )}
-
-          {currentTab === "products" && (
-            <div className="space-y-6">
-              <div className="rounded-xl border border-border bg-card p-12 text-center">
-                <h2 className="text-lg font-semibold text-foreground">Products & Catalog</h2>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Manage inventory, pricing tiers, and subscriptions.
-                </p>
-                <Button size="sm" className="mt-4" onClick={() => setIsModalOpen(true)}>
-                  Add New Item
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {currentTab === "settings" && (
-            <div className="space-y-6">
-              <div className="rounded-xl border border-border bg-card p-6">
-                <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                  <SettingsIcon className="h-5 w-5" />
-                  General Workspace Settings
-                </h2>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Configure organization details, team roles, and billing preferences.
-                </p>
-                <div className="mt-6 space-y-4 max-w-xl">
-                  <div>
-                    <label className="text-xs font-semibold text-foreground">Workspace Name</label>
-                    <input
-                      type="text"
-                      defaultValue="Apex Workspace"
-                      className="mt-1 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold text-foreground">Contact Email</label>
-                    <input
-                      type="email"
-                      defaultValue="admin@apex.dev"
-                      className="mt-1 flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm"
-                    />
-                  </div>
-                  <Button size="sm" className="mt-2">
-                    Save Changes
-                  </Button>
-                </div>
-              </div>
+                Return to Domain portfolio
+              </button>
             </div>
           )}
         </main>
       </div>
 
-      {/* Interactive Modal */}
-      <CreateInvoiceModal
-        open={isModalOpen}
-        onOpenChange={setIsModalOpen}
+      {/* 4. Floating AI Command Pill ("Ask me anything") */}
+      <AiOmnibar />
+
+      {/* 5. Modals */}
+      <GetDomainModal
+        open={isGetDomainOpen}
+        onOpenChange={setIsGetDomainOpen}
+      />
+      <TransferDomainModal
+        open={isTransferOpen}
+        onOpenChange={setIsTransferOpen}
+      />
+      <RenewDomainModal
+        open={!!renewTarget}
+        domainName={renewTarget || ""}
+        onOpenChange={(open) => !open && setRenewTarget(null)}
       />
     </div>
   );
