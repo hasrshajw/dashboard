@@ -70,6 +70,59 @@ export function ComponentsShowcase() {
         </Breadcrumb>
       </div>
 
+      {/* Brand Color Swatches Card */}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-brand-primary" />
+                Active Brand Palette
+              </CardTitle>
+              <CardDescription>
+                Configured brand color tokens available across all components and Tailwind utilities.
+              </CardDescription>
+            </div>
+            <Badge variant="outline" className="text-xs">
+              Tailwind CSS v4
+            </Badge>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {[
+              { name: "Primary", hex: "#673de6", bg: "bg-brand-primary", text: "text-white" },
+              { name: "Primary Dark", hex: "#5025d1", bg: "bg-brand-primary-dark", text: "text-white" },
+              { name: "Primary Light", hex: "#ebe4ff", bg: "bg-brand-primary-light", text: "text-brand-primary-dark" },
+              { name: "Success", hex: "#00b090", bg: "bg-brand-success", text: "text-white" },
+              { name: "Success Light", hex: "#def4f0", bg: "bg-brand-success-light", text: "text-brand-success-dark" },
+              { name: "Danger", hex: "#fc5185", bg: "bg-brand-danger", text: "text-white" },
+              { name: "Danger Light", hex: "#ffe8ef", bg: "bg-brand-danger-light", text: "text-brand-danger-dark" },
+              { name: "Warning", hex: "#ffcd35", bg: "bg-brand-warning", text: "text-brand-dark" },
+              { name: "Warning Light", hex: "#fff8e2", bg: "bg-brand-warning-light", text: "text-brand-warning-dark" },
+              { name: "Meteorite", hex: "#8c85ff", bg: "bg-brand-meteorite", text: "text-white" },
+              { name: "Meteorite Dark", hex: "#2f1c6a", bg: "bg-brand-meteorite-dark", text: "text-white" },
+              { name: "Gray Dark", hex: "#36344d", bg: "bg-brand-gray-dark", text: "text-white" },
+            ].map((color) => (
+              <div
+                key={color.name}
+                className="flex flex-col overflow-hidden rounded-lg border border-border bg-card shadow-xs"
+              >
+                <div
+                  className={`h-12 w-full flex items-center justify-center font-mono text-[11px] font-semibold ${color.bg} ${color.text}`}
+                >
+                  {color.hex}
+                </div>
+                <div className="p-2">
+                  <p className="text-xs font-medium text-foreground">{color.name}</p>
+                  <p className="text-[10px] text-muted-foreground font-mono">{color.bg}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Grid of Showcase Cards */}
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
         {/* Buttons & Badges */}

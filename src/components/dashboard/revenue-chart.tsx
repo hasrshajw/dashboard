@@ -69,7 +69,7 @@ export function RevenueChart() {
             </div>
             <div className="hidden sm:inline">
               <span className="text-muted-foreground">Net Margin: </span>
-              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+              <span className="font-semibold text-brand-success">
                 +
                 {(
                   (((hoveredBar ? hoveredBar.revenue : 45231) -
@@ -116,11 +116,11 @@ export function RevenueChart() {
                 )}
 
                 {/* The Bar */}
-                <div className="w-full max-w-[28px] rounded-t-md transition-all duration-300 relative overflow-hidden bg-primary/20 group-hover:bg-primary/30 flex flex-col justify-end">
+                <div className="w-full max-w-[28px] rounded-t-md transition-all duration-300 relative overflow-hidden bg-brand-primary-lightest group-hover:bg-brand-primary-light/40 flex flex-col justify-end">
                   <div
                     style={{ height: `${heightPercent}%` }}
                     className={`w-full rounded-t-md transition-all duration-300 ${
-                      isHovered ? "bg-primary scale-[1.03]" : "bg-primary/90"
+                      isHovered ? "bg-brand-primary scale-[1.03]" : "bg-brand-primary/85"
                     }`}
                   />
                 </div>

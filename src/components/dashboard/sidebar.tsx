@@ -137,15 +137,15 @@ export function Sidebar({ currentTab, onSelectTab, isOpen, onClose }: SidebarPro
           </div>
 
           {/* Pro Plan Card */}
-          <div className="mt-8 rounded-xl border border-border bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-4">
+          <div className="mt-8 rounded-xl border border-border bg-gradient-to-br from-brand-primary-light via-brand-white-blue to-transparent dark:from-brand-meteorite-dark/60 dark:via-brand-meteorite-dark/20 p-4">
             <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-primary" />
+              <Sparkles className="h-4 w-4 text-brand-primary dark:text-brand-meteorite" />
               <span className="text-xs font-semibold text-foreground">Pro Workspace</span>
             </div>
             <p className="mt-1 text-xs text-muted-foreground">
               You are currently on the Pro trial with 14 days remaining.
             </p>
-            <Button size="sm" variant="outline" className="mt-3 w-full text-xs h-7">
+            <Button size="sm" variant="outline" className="mt-3 w-full text-xs h-7 border-brand-primary/30 hover:bg-brand-primary-light dark:hover:bg-brand-meteorite-dark/50">
               Manage Subscription
             </Button>
           </div>

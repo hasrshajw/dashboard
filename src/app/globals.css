@@ -2,78 +2,149 @@
 
 @layer base {
   :root {
-    --background: 220 20% 98%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 221.2 83.2% 53.3%;
+    /* Brand Colors */
+    --brand-primary: #673de6;
+    --brand-primary-light: #ebe4ff;
+    --brand-primary-lightest: #673de614;
+    --brand-primary-dark: #5025d1;
+    --brand-primary-charts: #b39ef3;
+    --brand-white: #ffffff;
+    --brand-gray: #6d7081;
+    --brand-gray-light: #f2f3f6;
+    --brand-gray-dark: #36344d;
+    --brand-gray-border: #dadce0;
+    --brand-success: #00b090;
+    --brand-success-light: #def4f0;
+    --brand-success-dark: #008361;
+    --brand-info-light: #e0f8ff;
+    --brand-danger: #fc5185;
+    --brand-danger-light: #ffe8ef;
+    --brand-danger-dark: #d63163;
+    --brand-warning: #ffcd35;
+    --brand-warning-light: #fff8e2;
+    --brand-warning-dark: #fea419;
+    --brand-meteorite: #8c85ff;
+    --brand-meteorite-light: #d5dfff;
+    --brand-meteorite-gray: #dadce03d;
+    --brand-meteorite-dark: #2f1c6a;
+    --brand-light: #ffffff;
+    --brand-dark: #1d1e20;
+    --brand-white-blue: #f4f5ff;
+    --brand-primary-timer: #8564eb;
+    --brand-black-timer: #343434;
+    --brand-periwinkle: #c5cde9;
+    --brand-ghost-white: #fafbff;
+    --brand-backdrop: #00000080;
+    --brand-placeholder: #00000099;
+    --brand-primary-dark-hover: #dadce03d;
+
+    /* Standard shadcn design tokens mapped to brand colours (Light Mode) */
+    --background: #fafbff;
+    --foreground: #1d1e20;
+    --card: #ffffff;
+    --card-foreground: #1d1e20;
+    --popover: #ffffff;
+    --popover-foreground: #1d1e20;
+    --primary: #673de6;
+    --primary-foreground: #ffffff;
+    --secondary: #f2f3f6;
+    --secondary-foreground: #36344d;
+    --muted: #f2f3f6;
+    --muted-foreground: #6d7081;
+    --accent: #ebe4ff;
+    --accent-foreground: #5025d1;
+    --destructive: #fc5185;
+    --destructive-foreground: #ffffff;
+    --border: #dadce0;
+    --input: #dadce0;
+    --ring: #673de6;
     --radius: 0.65rem;
   }
 
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 47.4% 7.2%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 47.4% 7.2%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    /* Standard shadcn design tokens mapped to brand colours (Dark Mode) */
+    --background: #14131b;
+    --foreground: #fafbff;
+    --card: #1d1c26;
+    --card-foreground: #fafbff;
+    --popover: #1d1c26;
+    --popover-foreground: #fafbff;
+    --primary: #8c85ff;
+    --primary-foreground: #ffffff;
+    --secondary: #272535;
+    --secondary-foreground: #fafbff;
+    --muted: #272535;
+    --muted-foreground: #9a9cb0;
+    --accent: #2f1c6a;
+    --accent-foreground: #ebe4ff;
+    --destructive: #fc5185;
+    --destructive-foreground: #ffffff;
+    --border: #36344d;
+    --input: #36344d;
+    --ring: #8c85ff;
   }
 }
 
 @theme {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  /* Direct Brand Utility Classes (e.g. bg-brand-primary, text-brand-success) */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-light: var(--brand-primary-light);
+  --color-brand-primary-lightest: var(--brand-primary-lightest);
+  --color-brand-primary-dark: var(--brand-primary-dark);
+  --color-brand-primary-charts: var(--brand-primary-charts);
+  --color-brand-white: var(--brand-white);
+  --color-brand-gray: var(--brand-gray);
+  --color-brand-gray-light: var(--brand-gray-light);
+  --color-brand-gray-dark: var(--brand-gray-dark);
+  --color-brand-gray-border: var(--brand-gray-border);
+  --color-brand-success: var(--brand-success);
+  --color-brand-success-light: var(--brand-success-light);
+  --color-brand-success-dark: var(--brand-success-dark);
+  --color-brand-info-light: var(--brand-info-light);
+  --color-brand-danger: var(--brand-danger);
+  --color-brand-danger-light: var(--brand-danger-light);
+  --color-brand-danger-dark: var(--brand-danger-dark);
+  --color-brand-warning: var(--brand-warning);
+  --color-brand-warning-light: var(--brand-warning-light);
+  --color-brand-warning-dark: var(--brand-warning-dark);
+  --color-brand-meteorite: var(--brand-meteorite);
+  --color-brand-meteorite-light: var(--brand-meteorite-light);
+  --color-brand-meteorite-gray: var(--brand-meteorite-gray);
+  --color-brand-meteorite-dark: var(--brand-meteorite-dark);
+  --color-brand-light: var(--brand-light);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-white-blue: var(--brand-white-blue);
+  --color-brand-primary-timer: var(--brand-primary-timer);
+  --color-brand-black-timer: var(--brand-black-timer);
+  --color-brand-periwinkle: var(--brand-periwinkle);
+  --color-brand-ghost-white: var(--brand-ghost-white);
 }
 
 body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+  background-color: var(--background);
+  color: var(--foreground);
   font-feature-settings: "rlig" 1, "calt" 1;
 }
