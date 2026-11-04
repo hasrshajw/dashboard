@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Apex Admin Dashboard (Next.js + shadcn/ui)
 
-## Getting Started
+A modern, production-ready admin dashboard built with **Next.js 16 (App Router)**, **Tailwind CSS v4**, and **shadcn/ui** design system components, optimized for deployment on **Vercel**.
 
-First, run the development server:
+---
 
+## 🚀 Features
+
+- **shadcn/ui Architecture:**
+  - Full modular component structure under `src/components/ui/` (`Button`, `Card`, `Badge`, `Input`, `Table`, `Avatar`, `Separator`, `Tabs`, `Dialog`, `DropdownMenu`).
+  - `cn(...)` utility helper in `src/lib/utils.ts` combining `clsx` and `tailwind-merge`.
+  - Design tokens and theme variables in `src/app/globals.css`.
+- **Admin Dashboard Layout:**
+  - **Sidebar:** Collapsible, mobile-responsive navigation with active indicators, badges, and workspace details.
+  - **Header:** Global search (`⌘K`), unread notifications dropdown, dark/light theme switcher, quick actions, and user profile menu.
+  - **Stat Cards:** Key performance metrics (Total Revenue, Active Subscriptions, Sales Volume, Real-time users) with positive/negative trend indicators.
+  - **Revenue Analytics:** Interactive month-by-month bar chart with hover tooltips and timeframe selectors.
+  - **Recent Transactions:** Customer breakdown with avatar badges and status pills.
+  - **Orders Table:** Filterable, searchable data table with status badges and dropdown action menus.
+  - **Interactive Invoice Modal:** shadcn Dialog modal with form inputs and confirmation state.
+- **Dark & Light Mode:** Built-in instantaneous theme switching persisted in `localStorage`.
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Run Development Server
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### 2. Build for Production
+```bash
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎨 How to Add More shadcn Components
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Because shadcn/ui gives you direct ownership of component code:
+1. Inspect the official documentation: [shadcn/ui Components](https://ui.shadcn.com/docs/components)
+2. Each component is a standard React component placed in `src/components/ui/<component-name>.tsx`.
+3. You can customize the styles, variants, or behavior directly in the code without any restriction.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🚢 Deploying to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Option 1: Via GitHub (Recommended)
+1. Push your repository to GitHub:
+   ```bash
+   git remote add origin https://github.com/<your-username>/<repo-name>.git
+   git branch -M main
+   git push -u origin main
+   ```
+2. Go to [Vercel](https://vercel.com/new).
+3. Import your GitHub repository.
+4. Vercel automatically detects Next.js — click **Deploy**!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Option 2: Via Vercel CLI
+```bash
+npx vercel
+```
+Follow the interactive prompts to link and deploy your site to production immediately.
