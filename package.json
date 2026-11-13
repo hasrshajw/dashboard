@@ -1,0 +1,42 @@
+{
+  "name": "dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "node tools/lint/node_modules/eslint/bin/eslint.js -c tools/lint/eslint.config.js src",
+    "lint:install": "npm ci --prefix tools/lint",
+    "test": "vitest run",
+    "test:db": "bash tools/db-test/run.sh",
+    "test:e2e": "playwright test",
+    "test:e2e:install": "npm i -D @playwright/test && npx playwright install chromium"
+  },
+  "dependencies": {
+    "@hugeicons/core-free-icons": "^4.4.0",
+    "@hugeicons/react": "^1.1.10",
+    "@supabase/supabase-js": "^2.119.0",
+    "@types/qrcode": "^1.5.6",
+    "morphdom": "^2.7.8",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.1.1"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^30.0.0",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^31.0.0",
+    "typescript": "^5.3.3",
+    "vite": "^6.0.5",
+    "vitest": "^5.1.0"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
+}
